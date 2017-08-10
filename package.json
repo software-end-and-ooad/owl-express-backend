@@ -1,0 +1,17 @@
+{
+  "name": "webserv-v2.5",
+  "version": "1.0.0",
+  "description": "hosting free for KMITL personal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "csag",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mysql": "github:mysqljs/mysql",
+    "password-hash": "^1.2.2"
+  }
+}
