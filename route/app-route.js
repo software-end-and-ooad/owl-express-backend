@@ -23,8 +23,8 @@ app.post(uri.auth, function (req, res) {
           id: results[0].id,
           email: results[0].email,
           username: results[0].username,
-          name: results[0].name,
-          password: results[0].password,
+          name: results[0].name
+       
         }
 
         res.status(200).json({ success: true, data: obj })
