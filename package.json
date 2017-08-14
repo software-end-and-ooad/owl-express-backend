@@ -9,8 +9,10 @@
   "author": "csag",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^8.0.20",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "jsonwebtoken": "^7.4.2",
     "mysql": "github:mysqljs/mysql",
     "password-hash": "^1.2.2"
   }
