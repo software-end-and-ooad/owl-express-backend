@@ -6,3 +6,4 @@ exports.connection = mysql.createConnection({
   password : 'root',
   database : 'webserv'
 });
+
