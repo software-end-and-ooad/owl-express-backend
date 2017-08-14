@@ -1,9 +1,9 @@
-const domain = 'localhost:3000/api/'
-
-exports.api = {
+const api = {
 
   auth: '/auth',
   register: '/register',
 
 }
 
+
+module.exports = api;

@@ -1,9 +1,8 @@
-const mysql = require('mysql');
+import mysql from 'mysql';
 
-exports.connection = mysql.createConnection({
+export default  mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
   database : 'webserv'
 });
-

@@ -1,16 +1,17 @@
-const express               = require('express')
-const app                   = module.exports
-                            = express.Router()
-const mysql                 = require('../config/dbconfig').connection
-const passwordHash          = require('password-hash')
-const jwt                   = require('jsonwebtoken');
+import express               from 'express'
+import mysql                 from '../config/dbconfig';
+import passwordHash          from 'password-hash'
+import jwt                   from 'jsonwebtoken'
 
-const uri = require('../constant/api').api
-const AuthenticationRequest = require('./handlers/authentication-request')
-const Validatorjs = require('validatorjs')
-const secretJWT = require('../config/secret-jwt').secretJWT
+import api                   from '../constant/api'
+import AuthenticationRequest from './handlers/authentication-request'
+import Validatorjs           from 'validatorjs'
+import secretJWT             from '../config/secret-jwt'
 
-app.post(uri.auth, function (req, res) {
+mysql.connect()
+const app = express.Router()
+
+app.post(api.auth, function (req, res) {
   const studentid = req.body.email;
   const password = req.body.password;
   const emailKMITL = AuthenticationRequest.setEmailKMITL(studentid) //set to studentid@kmtil.ac.th
@@ -26,9 +27,10 @@ app.post(uri.auth, function (req, res) {
           email: results[0].email,
           username: results[0].username,
           name: results[0].name
-
         }
-        const token = jwt.sign({ iss: 'https://webserv.kmtil.ac.th' }, secretJWT);
+        const token = jwt.sign({
+          iss: 'https://webserv.kmtil.ac.th'
+        }, secretJWT);
 
         res.status(200).json({ success: true, data: obj, token: token })
       }
@@ -40,17 +42,19 @@ app.post(uri.auth, function (req, res) {
   })
 })
 
-app.post(uri.register, function (req, res) {
 
-  const name = req.body.name;
-  const role = req.body.role;
-  const email = req.body.email;
-  // const emailKMITL = AuthenticationRequest.setEmailKMITL(email)
-  const domain = req.body.domain;
-  const studentid = email;
-  const faculty = req.body.faculty;
-  const password = req.body.password;
-  const repassword = req.body.repassword;
+app.post(api.register, function (req, res) {
+
+  const {
+    name,
+    role,
+    email,
+    domain,
+    studentid,
+    faculty,
+    password,
+    repassword
+  } = req.body;
 
   const rules = {
     name: 'required',
@@ -74,10 +78,9 @@ app.post(uri.register, function (req, res) {
 
 })
 
-app.post('/test', function(req, res) {
-  res.status(200).json({ sucess: 'test'})
-})
 
 app.get('/*', function (req, res) {
   res.status(404).send('NOT FOUND')
 })
+
+module.exports = app;
