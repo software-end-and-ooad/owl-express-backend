@@ -1,8 +1,16 @@
-import mysql from 'mysql';
+import Sequelize from 'sequelize'
 
-export default  mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  database : 'webserv'
+const sequelize = new Sequelize('webserv', 'root', 'root', {
+  host: 'localhost',
+  dialect: 'mysql',
+  logging: false,
+
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  },
+
 });
+
+module.exports = sequelize

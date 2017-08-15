@@ -15,8 +15,9 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "jsonwebtoken": "^7.4.2",
-    "mysql": "github:mysqljs/mysql",
+    "mysql2": "^1.4.0",
     "password-hash": "^1.2.2",
+    "sequelize": "^4.5.0",
     "validatorjs": "^3.13.3"
   },
   "devDependencies": {
