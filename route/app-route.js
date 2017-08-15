@@ -1,12 +1,9 @@
 // Dependency
 import express               from 'express'
-import passwordHash          from 'password-hash'
-import jwt                   from 'jsonwebtoken'
 
 // Other
 import api                   from '../constant/api'
 import Validatorjs           from 'validatorjs'
-import secretJWT             from '../config/secret-jwt'
 
 // Controller
 import LoginController       from '../controller/auth.controller'
