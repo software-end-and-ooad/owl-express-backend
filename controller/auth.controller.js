@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import passwordHash from 'password-hash'
+import Validator from 'validatorjs'
 
 import sequelize from '../model/Model';
 import User from '../model/User'
@@ -12,27 +13,43 @@ async function LoginController(req, res) {
   const password = req.body.password;
   const emailKMITL = AuthenticationRequest.setEmailKMITL(studentid) //set to studentid@kmtil.ac.th
 
-  const result = await User.findOne({
-    where: {
-      email: emailKMITL
-    },
-    attributes: ['id', 'email', 'name', 'username', 'password']
-  })
+  const data = {
+    email: emailKMITL,
+    password: password
+  };
 
-  if (result != null) { // If found user
-    const user = result.dataValues;
-    if (passwordHash.verify(password, user.password) == true) { // Check password
-      const obj = {
-        id: user.id,
-        name: user.name,
-        username: user.username,
-        email: user.email
+  const rules = {
+    email: 'required|email',
+    password: 'required'
+  };
+
+  const validation = new Validator(data, rules);
+
+  if (validation.passes() == true) {
+    const result = await User.findOne({
+      where: {
+        email: emailKMITL
+      },
+      attributes: ['id', 'email', 'name', 'username', 'password']
+    })
+
+    if (result != null) { // If found user
+      const user = result.dataValues;
+      if (passwordHash.verify(password, user.password) == true) { // Check password
+        const obj = {
+          id: user.id,
+          name: user.name,
+          username: user.username,
+          email: user.email
+        }
+        const token = jwt.sign({
+          iss: 'https://webserv.kmtil.ac.th'
+        }, jwtconfig.jwt_secret);
+
+        res.status(200).json({ sucess: true, data: obj, token: token })
+      } else {
+        res.status(401).json({ sucess: false, data: 'INVALID_CREDENTIALS' })
       }
-      const token = jwt.sign({
-        iss: 'https://webserv.kmtil.ac.th'
-      }, jwtconfig.jwt_secret);
-
-      res.status(200).json({ sucess: true, data: obj, token: token })
     } else {
       res.status(401).json({ sucess: false, data: 'INVALID_CREDENTIALS' })
     }
