@@ -5,7 +5,7 @@ import Validator from 'validatorjs'
 import sequelize from '../model/Model';
 import User from '../model/User'
 import jwtconfig from '../config/jwtconfig'
-import AuthenticationRequest from './handlers/authentication-request'
+import AuthenticationRequest from './handlers/authentication.request'
 
 
 async function LoginController(req, res) {
@@ -35,6 +35,7 @@ async function LoginController(req, res) {
 
     if (result != null) { // If found user
       const user = result.dataValues;
+
       if (passwordHash.verify(password, user.password) == true) { // Check password
         const obj = {
           id: user.id,
@@ -42,6 +43,7 @@ async function LoginController(req, res) {
           username: user.username,
           email: user.email
         }
+
         const token = jwt.sign({
           iss: 'https://webserv.kmtil.ac.th'
         }, jwtconfig.jwt_secret);
