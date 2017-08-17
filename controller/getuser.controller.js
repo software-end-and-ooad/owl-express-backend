@@ -9,7 +9,7 @@ function GetuserController(req, res) {
   const token = headers!=null? req.headers['authorization'].substr('7'): undefined
 
   jwt.verify(token, jwtconfig.secret, async function(err, decoded) {
-    const userid = decoded.id
+    const userid = decoded.sub
 
     if (!err) {
       const result = await User.findOne({
@@ -28,7 +28,6 @@ function GetuserController(req, res) {
           username: user.username,
           email: user.email
         }
-
 
         res.status(200).json({ sucess: true, data: obj })
       } else {
