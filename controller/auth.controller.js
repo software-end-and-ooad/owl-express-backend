@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
 import passwordHash from 'password-hash'
 import Validator from 'validatorjs'
+import crypto from 'crypto'
 
-import sequelize from '../model/Model';
 import User from '../model/User'
 import jwtconfig from '../config/jwtconfig'
 import AuthenticationRequest from './handlers/authentication.request'
@@ -45,8 +45,11 @@ async function LoginController(req, res) {
         }
 
         const token = jwt.sign({
-          iss: 'https://webserv.kmtil.ac.th'
-        }, jwtconfig.jwt_secret);
+          sub: user.id,
+          secret: jwtconfig.secret,
+          audience: jwtconfig.audience,
+          issuer: jwtconfig.issuer
+        }, jwtconfig.secret, {expiresIn: jwtconfig.expire});
 
         res.status(200).json({ sucess: true, data: obj, token: token })
       } else {

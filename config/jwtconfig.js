@@ -1,5 +1,6 @@
-const jwtconfig = {
-  'jwt_secret': 'csag - webserv-v2.5'
+module.exports = {
+  'secret': 'hack me if you can',
+  'audience': 'webserv - v2.5',
+  'issuer': 'https://webserv.kmitl.ac.th',
+  'expire': '10 days'
 }
-
-module.exports = jwtconfig
