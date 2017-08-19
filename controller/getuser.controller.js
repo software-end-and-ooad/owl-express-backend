@@ -10,9 +10,10 @@ function GetuserController(req, res) {
   const token = handler.getTokenFormHeader(header) // Get token from authorization
 
   jwt.verify(token, jwtconfig.secret, async function(err, decoded) {
-    const userid = decoded.sub
 
     if (!err) {
+      const userid = decoded.sub
+
       const result = await User.findOne({
         where: {
           id: userid

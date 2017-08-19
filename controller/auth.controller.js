@@ -48,7 +48,8 @@ async function LoginController(req, res) {
           sub: user.id,
           secret: jwtconfig.secret,
           audience: jwtconfig.audience,
-          issuer: jwtconfig.issuer
+          issuer: jwtconfig.issuer,
+          signIn: new Date().getTime()
         }, jwtconfig.secret, {expiresIn: jwtconfig.expire});
 
         res.status(200).json({ sucess: true, data: obj, token: token })
