@@ -5,7 +5,7 @@ import crypto from 'crypto'
 
 import User from '../model/User'
 import jwtconfig from '../config/jwtconfig'
-import AuthenticationRequest from './handlers/authentication.request'
+import AuthenticationRequest from './handlers/handlers'
 
 
 async function LoginController(req, res) {

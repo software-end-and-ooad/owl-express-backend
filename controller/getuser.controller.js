@@ -2,11 +2,12 @@ import jwt from 'jsonwebtoken'
 
 import User from '../model/User'
 import jwtconfig from '../config/jwtconfig'
+import handler from './handlers/handlers';
 
 function GetuserController(req, res) {
 
-  const headers = req.headers['authorization']
-  const token = headers!=null? req.headers['authorization'].substr('7'): undefined
+  const header = req.headers['authorization']
+  const token = handler.getTokenFormHeader(header) // Get token from authorization
 
   jwt.verify(token, jwtconfig.secret, async function(err, decoded) {
     const userid = decoded.sub

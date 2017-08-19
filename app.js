@@ -1,6 +1,7 @@
-import express   from 'express'
+import express from 'express'
 import bodyParser from 'body-parser'
-import router     from './route/app-route';
+import router from './route/route';
+import routerProtect from './route/router.protect';
 
 const app = express();
 
@@ -17,7 +18,30 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/', router)
+app.use('/api', router)
+
+app.use('/api/user', function(req, res, next) {
+  const authorization = req.headers['authorization'];
+  const bearer = 'bearer'
+
+  if (authorization == undefined) {
+    res.json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
+  }
+
+  const prefixToken = authorization.split(' ') // Get prefix token (should be bearer)
+
+  if (prefixToken[0] != bearer.toLowerCase())
+    res.json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
+
+  next();
+})
+app.use('/api/user', routerProtect)
+
+//app.use('/api/admin', routerAdmin) // Use for admin
+
+app.get('/*', function (req, res) {
+  res.status(404).send('NOT FOUND')
+})
 
 const port = process.env.PORT || 3000;
 

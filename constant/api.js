@@ -1,8 +1,8 @@
-const prefix = '/api/'
 const api = {
 
-  auth: prefix + 'auth',
-  register: prefix + 'register',
+  auth: '/auth',
+  register: '/register',
+  refresh: '/refresh',
 
 }
 
