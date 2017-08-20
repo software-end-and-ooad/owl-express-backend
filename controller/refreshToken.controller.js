@@ -26,7 +26,7 @@ function RefreshTokenController(req, res) {
       res.status(200).json({ sucess: true, token: newToken })
     } else {
 
-      res.status(404).json({ sucess: false, data: err.message })
+      res.status(400).json({ sucess: false, data: err.message })
     }
 
   })

@@ -38,7 +38,7 @@ function GetuserController(req, res) {
 
     } else {
 
-      res.status(404).json({ sucess: false, data: err.message })
+      res.status(400).json({ sucess: false, data: err.message })
     }
   });
 

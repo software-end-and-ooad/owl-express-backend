@@ -25,13 +25,13 @@ app.use('/api/user', function(req, res, next) {
   const bearer = 'bearer'
 
   if (authorization == undefined) {
-    res.json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
+    res.status(400).json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
   }
 
   const prefixToken = authorization.split(' ') // Get prefix token (should be bearer)
 
   if (prefixToken[0] != bearer.toLowerCase())
-    res.json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
+    res.status(400).json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
 
   next();
 })
