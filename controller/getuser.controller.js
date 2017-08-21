@@ -31,7 +31,7 @@ function GetuserController(req, res) {
           email: user.email
         }
 
-        res.status(400).json({ sucess: true, data: obj })
+        res.status(200).json({ sucess: true, data: obj })
       } else {
         res.status(200).json({ sucess: true, data: {} })
       }
