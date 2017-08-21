@@ -1,7 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import router from './route/route';
-import routerProtect from './route/router.protect';
+import router from './route/route'
+import routerProtect from './route/router.protect'
+import cors from 'cors'
 
 const app = express();
 
@@ -9,6 +10,11 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+const corsOptions = {
+    origin: 'http://example.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors())
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -24,16 +30,16 @@ app.use('/api/user', function(req, res, next) {
   const authorization = req.headers['authorization'];
   const bearer = 'bearer'
 
-  if (authorization == undefined) {
+  if ( authorization != undefined ) {
+    const prefixToken = authorization.split(' ') // Get prefix token (should be bearer)
+
+    if ( prefixToken[0] == bearer.toLowerCase() )
+      next();
+    else
+      res.status(400).json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
+  } else {
     res.status(400).json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
   }
-
-  const prefixToken = authorization.split(' ') // Get prefix token (should be bearer)
-
-  if (prefixToken[0] != bearer.toLowerCase())
-    res.status(400).json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
-
-  next();
 })
 app.use('/api/user', routerProtect)
 
