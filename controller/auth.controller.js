@@ -65,6 +65,7 @@ async function LoginController(req, res) {
       res.status(401).json({ sucess: false, data: 'INVALID_CREDENTIALS' })
     }
   })
+
   validation.fails(function() {
     const errMsg = validation.errors.first('email') || validation.errors.first('password')
     res.status(400).json({ sucess: false, data: errMsg})

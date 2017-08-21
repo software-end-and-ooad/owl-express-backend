@@ -37,8 +37,15 @@ function GetuserController(req, res) {
       }
 
     } else {
+      // Custom popular jwt error message
+      if (err.message == 'jwt expired')
+        err.message = 'TOKEN_EXPIRED'
+      else if(err.message == 'invalid signature') // jwt secret is not match || token not match
+        err.message = 'TOKEN_INVALID'
+      else if(err.message == 'jwt must be provided')
+        err.message = 'TOKEN_MUST_BE_PROVIDED'
 
-      res.status(400).json({ sucess: false, data: err.message })
+      res.status(401).json({ sucess: false, data: err.message })
     }
   });
 
