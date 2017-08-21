@@ -23,9 +23,14 @@ async function LoginController(req, res) {
     password: 'required'
   };
 
-  const validation = new Validator(data, rules);
+  const errMessage = {
+    required: ':attribute_IS_REQUIRED',
+    email: ':attribute_IS_NOT_EMAIL'
+  }
 
-  if (validation.passes() == true) {
+  const validation = new Validator(data, rules, errMessage);
+
+  validation.passes(async function() {
     const result = await User.findOne({
       where: {
         email: emailKMITL
@@ -59,9 +64,11 @@ async function LoginController(req, res) {
     } else {
       res.status(401).json({ sucess: false, data: 'INVALID_CREDENTIALS' })
     }
-  } else {
-    res.status(401).json({ sucess: false, data: 'INVALID_CREDENTIALS' })
-  }
+  })
+  validation.fails(function() {
+    const errMsg = validation.errors.first('email') || validation.errors.first('password')
+    res.status(400).json({ sucess: false, data: errMsg})
+  })
 
 }
 
