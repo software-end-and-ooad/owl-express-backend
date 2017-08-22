@@ -67,7 +67,7 @@ async function LoginController(req, res) {
   })
 
   validation.fails(function() {
-    const errMsg = validation.errors.first('email') || validation.errors.first('password')
+    const errMsg = validation.errors.all()
     res.status(400).json({ sucess: false, data: errMsg})
   })
 
