@@ -3,7 +3,7 @@ import passwordHash from 'password-hash'
 import Validator from 'validatorjs'
 import crypto from 'crypto'
 
-import User from '../model/User'
+import User from '../models/User'
 import jwtconfig from '../config/jwtconfig'
 import AuthenticationRequest from './handlers/handlers'
 
