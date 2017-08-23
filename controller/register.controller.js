@@ -1,8 +1,10 @@
 import Validator from 'validatorjs'
+import jwt from 'jsonwebtoken'
 import passwordHash from 'password-hash'
 
 import User from '../models/User'
 import AuthenticationRequest from './handlers/handlers'
+import jwtconfig from '../config/jwtconfig'
 
 async function RegisterController(req, res) {
   const {
@@ -58,7 +60,9 @@ async function RegisterController(req, res) {
       res.status(401).json({ success: false, data: ['domain_HAS_USED'] })
 
     else {
-      const data = {
+      // EVERY THING PASS, READY TO REGISTER HERE
+
+      const saveData = {
         name: name,
         role: role,
         domain: domain,
@@ -73,7 +77,7 @@ async function RegisterController(req, res) {
       }
       // Save data to db
       const results = await User.findOrCreate({
-        defaults: data,
+        defaults: saveData,
         where: {
           $or: [{
             email: emailKMITL,
@@ -82,20 +86,30 @@ async function RegisterController(req, res) {
         },
         attributes: ['id']
       })
-      const result = results[0];
+      const user = results[0];
+
+      // Generate JWT token
+      const token = jwt.sign({
+        sub: user.id,
+        secret: jwtconfig.secret,
+        audience: jwtconfig.audience,
+        issuer: jwtconfig.issuer,
+        signIn: new Date().getTime()
+      }, jwtconfig.secret, {expiresIn: jwtconfig.expire});
+
       const callback = {
-        id: result.id,
-        name: result.name,
-        username: result.username,
-        domain: result.domain,
-        email: result.email,
-        studentid: result.studentid,
-        role: result.role,
-        confirm: result.confirm,
-        faculty: result.faculty
+        id: user.id,
+        name: user.name,
+        username: user.username,
+        domain: user.domain,
+        email: user.email,
+        studentid: user.studentid,
+        role: user.role,
+        confirm: user.confirm,
+        faculty: user.faculty
       }
 
-      res.status(200).json({ success: true, data: callback })
+      res.status(200).json({ success: true, data: callback, token: token })
     }
 
 
@@ -107,6 +121,7 @@ async function RegisterController(req, res) {
   })
 
 }
+
 
 function PasswordGenerate() {
   var password = "";
