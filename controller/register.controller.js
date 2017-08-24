@@ -19,7 +19,7 @@ async function RegisterController(req, res) {
   const emailKMITL = AuthenticationRequest.setEmailKMITL(studentid) //set to studentid@kmtil.ac.th
 
   const rules = {
-    //name: 'required|max:40',
+    name: 'required|max:40',
     role: 'required|max:255|min:7',
     domain: 'required|min:4|max:14', //unique
     studentid: 'required|max:40',

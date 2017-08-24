@@ -7,8 +7,8 @@ module.exports = {
       {
         id: {
           type: Sequelize.INTEGER,
-          primarykey: true,
-          autoincrement: true
+          primaryKey: true,
+          autoIncrement: true
         },
         name: {
           type: Sequelize.STRING,
@@ -60,10 +60,10 @@ module.exports = {
           allownull: true
         },
         created_at: {
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
         updated_at: {
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
       },
     )
