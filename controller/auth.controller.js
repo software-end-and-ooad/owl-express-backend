@@ -35,7 +35,7 @@ async function LoginController(req, res) {
       where: {
         email: emailKMITL
       },
-      attributes: ['id', 'email', 'name', 'username', 'password']
+      attributes: ['id', 'email', 'password']
     })
 
     if (result != null) { // If found user
@@ -44,8 +44,6 @@ async function LoginController(req, res) {
       if (passwordHash.verify(password, user.password) == true) { // Check password
         const obj = {
           id: user.id,
-          name: user.name,
-          username: user.username,
           email: user.email
         }
 

@@ -3,7 +3,7 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     queryInterface.createTable(
-      'users',
+      'officers',
       {
         id: {
           type: Sequelize.INTEGER,
@@ -23,7 +23,7 @@ module.exports = {
           type: Sequelize.STRING,
           allownull: false
         },
-        type: {
+        role: {
           type: Sequelize.STRING,
           allownull: false
         },
@@ -48,38 +48,34 @@ module.exports = {
           type: Sequelize.STRING,
           allownull: true,
         },
-        subscribe_sms: {
-          type: Sequelize.BOOLEAN,
+        officer_no: {
+          type: Sequelize.INTEGER,
           allownull: false,
-          defaultValue: false
+          unique: true
         },
-        subscribe_line: {
-          type: Sequelize.BOOLEAN,
+        bank_account: {
+          type: Sequelize.INTEGER,
           allownull: false,
-          defaultValue: false
         },
-        confirm_token: {
+        profile_picture: {
           type: Sequelize.STRING,
-          allownull: false
-        },
-        activated: {
-          type: Sequelize.BOOLEAN,
-          allownull: false,
-          defaultValue: false
+          allownull: true
         },
         password: {
           type: Sequelize.STRING,
           allownull: false
         },
-        created_at: Sequelize.DATE,
-        updated_at: Sequelize.DATE,
+        created_at: {
+          type: Sequelize.DATE,
+        },
+        updated_at: {
+          type: Sequelize.DATE,
+        },
       },
-      {
-        timestamps: true,
-      }
     )
   },
   down: function(queryInterface, Sequelize) {
-    queryInterface.dropTable('users')
+    queryInterface.dropTable('officers')
   }
 };
+

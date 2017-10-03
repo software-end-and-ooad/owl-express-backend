@@ -15,5 +15,4 @@ router.post(api.auth, LoginController)
 
 router.post(api.register, RegisterController)
 
-
 module.exports = router;

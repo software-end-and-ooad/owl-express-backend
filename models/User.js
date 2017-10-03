@@ -2,19 +2,21 @@ import Sequelize from 'sequelize'
 import sequelize from './Model'
 
 const User = sequelize.define('users', {
-  name: Sequelize.STRING,
-  username: Sequelize.STRING,
+  fullname: Sequelize.STRING,
   email: Sequelize.STRING,
-  domain: Sequelize.STRING,
-  role: Sequelize.STRING,
-  studentid: Sequelize.STRING,
-  faculty: Sequelize.STRING,
-  confirm: Sequelize.STRING,
-  token_confirm: Sequelize.STRING,
+  tell: Sequelize.STRING,
+  type: Sequelize.STRING,
+  rejected_order: Sequelize.INTEGER,
+  sub_district: Sequelize.STRING,
+  district: Sequelize.STRING,
+  province: Sequelize.STRING,
+  address_other: Sequelize.STRING,
+  subscribe_sms: Sequelize.BOOLEAN,
+  subscribe_line: Sequelize.BOOLEAN,
+  confirm_token: Sequelize.STRING,
+  activated: Sequelize.BOOLEAN,
   password: Sequelize.STRING,
-  ftp_password: Sequelize.STRING,
-  remember_token: Sequelize.STRING,
-  created_at: Sequelize.DATE,
+  created_at: Sequelize.DATE
 },{
   updatedAt: 'updated_at',
   createdAt: 'created_at',
