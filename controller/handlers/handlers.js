@@ -1,4 +1,7 @@
-const handler = {
+import User from '../../models/User'
+
+
+const Handler = {
 
   setEmailKMITL: (studentid) =>
   {
@@ -23,8 +26,30 @@ const handler = {
     const token = authorization.substr(bearer.length).trim()
 
     return token
-  }
+  },
+
+  confirmtokenGenerate: async () => {
+    let token = ""
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$@&"
+    let uniqueToken = ""
+
+    do {
+      for (var i = 0; i < 80; i++)
+        token += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      // Check unique confirm_token
+      uniqueToken = await User.findOne({
+        where: {
+          confirm_token: token
+        },
+        attributes: ['id']
+      })
+    } while (uniqueToken != null)
+
+    return token;
+  },
+
 }
 
 
-module.exports = handler
+module.exports = Handler

@@ -12,64 +12,64 @@ module.exports = {
         },
         fullname: {
           type: Sequelize.STRING,
-          allownull: false
+          allowNull: false
         },
         email: {
           type: Sequelize.STRING,
-          allownull: false,
+          allowNull: false,
           unique: true
         },
         tell: {
           type: Sequelize.STRING,
-          allownull: false
+          allowNull: false
         },
         type: {
           type: Sequelize.STRING,
-          allownull: false
+          allowNull: false
         },
         rejected_order: {
           type: Sequelize.INTEGER,
-          allownull: false,
+          allowNull: false,
           defaultValue: 0
         },
         sub_district: {
           type: Sequelize.STRING,
-          allownull: true,
+          allowNull: true,
         },
         district: {
           type: Sequelize.STRING,
-          allownull: true,
+          allowNull: true,
         },
         province: {
           type: Sequelize.STRING,
-          allownull: true,
+          allowNull: true,
         },
         address_other: {
           type: Sequelize.STRING,
-          allownull: true,
+          allowNull: true,
         },
         subscribe_sms: {
           type: Sequelize.BOOLEAN,
-          allownull: false,
+          allowNull: false,
           defaultValue: false
         },
         subscribe_line: {
           type: Sequelize.BOOLEAN,
-          allownull: false,
+          allowNull: false,
           defaultValue: false
         },
         confirm_token: {
           type: Sequelize.STRING,
-          allownull: false
+          allowNull: false
         },
         activated: {
           type: Sequelize.BOOLEAN,
-          allownull: false,
+          allowNull: false,
           defaultValue: false
         },
         password: {
           type: Sequelize.STRING,
-          allownull: false
+          allowNull: false
         },
         created_at: Sequelize.DATE,
         updated_at: Sequelize.DATE,

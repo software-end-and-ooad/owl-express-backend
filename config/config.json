@@ -19,7 +19,8 @@
     "username": "root",
     "password": "root",
     "database": "owl",
-    "host": "127.0.0.2",
+    "host": "localhost",
+    "port": 3307,
     "dialect": "mysql"
   }
 }

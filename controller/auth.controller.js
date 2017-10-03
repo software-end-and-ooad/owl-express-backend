@@ -9,12 +9,11 @@ import AuthenticationRequest from './handlers/handlers'
 
 
 async function LoginController(req, res) {
-  const studentid = req.body.email;
-  const password = req.body.password;
-  const emailKMITL = AuthenticationRequest.setEmailKMITL(studentid) //set to studentid@kmtil.ac.th
+  const password = req.body.password
+  const email = req.body.email
 
   const data = {
-    email: emailKMITL,
+    email: email,
     password: password
   };
 
@@ -33,7 +32,7 @@ async function LoginController(req, res) {
   validation.passes(async function() {
     const result = await User.findOne({
       where: {
-        email: emailKMITL
+        email: email
       },
       attributes: ['id', 'email', 'password']
     })
@@ -42,7 +41,7 @@ async function LoginController(req, res) {
       const user = result.dataValues;
 
       if (passwordHash.verify(password, user.password) == true) { // Check password
-        const obj = {
+        const obj = { // Response object
           id: user.id,
           email: user.email
         }
