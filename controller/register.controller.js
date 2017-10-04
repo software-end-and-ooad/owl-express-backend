@@ -43,6 +43,7 @@ async function RegisterController(req, res) {
       fullname: fullname,
       email: email,
       tell: tell,
+      type: type,
       password: passwordHash.generate(password),
       confirm_token: await Handler.confirmtokenGenerate(),
     }
@@ -81,6 +82,7 @@ async function RegisterController(req, res) {
           fullname: user.fullname,
           email: user.email,
           tell: user.tell,
+          type: user.type
         }
 
         res.status(200).json({ success: true, data: obj, token: token })
