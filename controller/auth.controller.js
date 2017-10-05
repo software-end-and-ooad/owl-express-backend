@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import passwordHash from 'password-hash'
 import Validator from 'validatorjs'
-import crypto from 'crypto'
 
 import User from '../models/User'
 import jwtconfig from '../config/jwtconfig'
@@ -54,18 +53,18 @@ async function LoginController(req, res) {
           signIn: new Date().getTime()
         }, jwtconfig.secret, {expiresIn: jwtconfig.expire});
 
-        res.status(200).json({ sucess: true, data: obj, token: token })
+        res.status(200).json({ success: true, data: obj, token: token })
       } else {
-        res.status(401).json({ sucess: false, data: 'INVALID_CREDENTIALS' })
+        res.status(401).json({ success: false, data: 'INVALID_CREDENTIALS' })
       }
     } else {
-      res.status(401).json({ sucess: false, data: 'INVALID_CREDENTIALS' })
+      res.status(401).json({ success: false, data: 'INVALID_CREDENTIALS' })
     }
   })
 
   validation.fails(function() {
     const errMsg = validation.errors.all()
-    res.status(400).json({ sucess: false, data: errMsg})
+    res.status(400).json({ success: false, data: errMsg})
   })
 
 }
