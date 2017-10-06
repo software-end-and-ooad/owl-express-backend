@@ -1,23 +1,9 @@
 import User from '../../models/User'
+import EgmailConfig from '../../config/emailConfig';
+import nodemailer from 'nodemailer';
 
 
 const Handler = {
-
-  setEmailKMITL: (studentid) =>
-  {
-    const KMTILEmail = '@kmitl.ac.th';
-
-    if (typeof studentid == 'string')
-      studentid.trim()
-    if (studentid != undefined) {
-      const indexAt = studentid.indexOf('@');
-      if ( indexAt > -1 ) { // If str has '@', it will use only string infront '@'
-        return studentid.substr(0, indexAt) + KMTILEmail;
-      }
-      else
-        return studentid + KMTILEmail;
-    }
-  },
 
   getTokenFormHeader: (authorization) => // Handler for header 'Authorization' to get authen token
   {
@@ -47,6 +33,26 @@ const Handler = {
     } while (uniqueToken != null)
 
     return token;
+  },
+
+  sendMail: (dest, subject, content) => {
+    nodemailer.createTestAccount((err, account) => {
+      const transporter = nodemailer.createTransport(EgmailConfig);
+      const mailOptions = {
+        from: EgmailConfig.auth.user,
+        to: dest,
+        subject: subject,
+        html: content
+      };
+
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+      });
+    });
+
   },
 
 }
