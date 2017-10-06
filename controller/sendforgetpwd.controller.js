@@ -9,5 +9,5 @@ async function SendForgetPasswordController(req, res) {
   res.status(200).json({ data: true })
 }
 
-module.exports = ForgetPasswordController;
+module.exports = SendForgetPasswordController;
 
