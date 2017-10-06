@@ -4,6 +4,7 @@ const api = {
   register: '/register',
   refresh: '/refresh',
   forgetPassword: '/forget-password',
+  resetPassword: '/reset-password'
 
 }
 

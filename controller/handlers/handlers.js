@@ -16,7 +16,7 @@ const Handler = {
 
   confirmtokenGenerate: async () => {
     let token = ""
-    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$@&"
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$@"
     let uniqueToken = ""
 
     do {

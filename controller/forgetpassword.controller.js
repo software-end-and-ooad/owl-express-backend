@@ -5,14 +5,13 @@ import Handler from './handlers/handlers';
 
 async function ForgetPasswordController(req, res) {
   const email = req.body.email // Destination email
-  const port = process.env.PORT || 3000;
   const token = await Handler.confirmtokenGenerate()
-  const url = `http://localhost:${port}/api/resetpassword/${token}`
+  const url = `http://localhost:4200/reset-password/${token}`
 
   const content = `<a href="${url}">Click here to reset password</a>`
 
   const update = await User.update({
-    confirm_token: 'boss'
+    confirm_token: token
   },{
     where: {
       email: email
