@@ -7,6 +7,7 @@ import api from '../constant/api'
 // Controller
 import LoginController from '../controller/auth.controller'
 import RegisterController from '../controller/register.controller'
+import ForgetPasswordController from '../controller/forgetpassword.controller'
 
 const router = express.Router()
 
@@ -14,5 +15,7 @@ const router = express.Router()
 router.post(api.auth, LoginController)
 
 router.post(api.register, RegisterController)
+
+router.post(api.forgetPassword, ForgetPasswordController)
 
 module.exports = router;
