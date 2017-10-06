@@ -1,10 +1,9 @@
-import passwordHash from 'password-hash'
 import User from '../models/User';
 
 import Handler from './handlers/handlers';
 
 
-async function SendForgetPasswordController(req, res) {
+async function ForgetPasswordController(req, res) {
   const email = req.body.email // Destination email
   const port = process.env.PORT || 3000;
   const token = await Handler.confirmtokenGenerate()
@@ -31,5 +30,5 @@ async function SendForgetPasswordController(req, res) {
   }
 }
 
-module.exports = SendForgetPasswordController;
+module.exports = ForgetPasswordController;
 
