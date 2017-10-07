@@ -44,6 +44,7 @@ app.use('/api/user', function(req, res, next) {
 app.use('/api/user', routerProtect)
 
 //app.use('/api/admin', routerAdmin) // Use for admin
+//app.use('/api/admin/protect', routerAdmin) // Use for admin using token (after logged in)
 
 app.get('/*', function (req, res) {
   res.status(404).send('NOT FOUND')
