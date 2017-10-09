@@ -4,7 +4,6 @@ import Validator from 'validatorjs'
 
 import User from '../models/User'
 import jwtconfig from '../config/jwtconfig'
-import AuthenticationRequest from './handlers/handlers'
 
 
 async function LoginController(req, res) {

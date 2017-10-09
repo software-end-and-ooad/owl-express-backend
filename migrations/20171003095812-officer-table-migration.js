@@ -27,11 +27,6 @@ module.exports = {
           type: Sequelize.STRING,
           allownull: false
         },
-        rejected_order: {
-          type: Sequelize.INTEGER,
-          allownull: false,
-          defaultValue: 0
-        },
         sub_district: {
           type: Sequelize.STRING,
           allownull: true,

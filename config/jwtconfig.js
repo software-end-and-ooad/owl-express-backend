@@ -1,5 +1,6 @@
 module.exports = {
   'secret': 'owl-express-naja-eiei',
+  'admin-secret': 'owl-express-administratororor-naja-eiei',
   'audience': 'owl-express',
   'issuer': 'https://www.owl-express.com',
   //'expire': '0.0017 h' // 10 seconds = 10/60/60 use for testing

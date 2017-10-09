@@ -2,9 +2,8 @@ import jwt from 'jsonwebtoken'
 import passwordHash from 'password-hash'
 import Validator from 'validatorjs'
 
-import User from '../../models/User' // Change to officer ( not create yet)
+import Officer from '../../models/officer' // Change to officer ( not create yet)
 import jwtconfig from '../../config/jwtconfig'
-import AuthenticationRequest from '../handlers/handlers'
 
 
 async function LoginController(req, res) {
@@ -29,7 +28,7 @@ async function LoginController(req, res) {
   const validation = new Validator(data, rules, errMessage);
 
   validation.passes(async function() {
-    const result = await User.findOne({
+    const result = await Officer.findOne({
       where: {
         email: email
       },
@@ -48,11 +47,11 @@ async function LoginController(req, res) {
         const token = jwt.sign({
           sub: user.id,
           ema: user.email,
-          secret: jwtconfig.secret,
+          secret: jwtconfig.admin-secret,
           audience: jwtconfig.audience,
           issuer: jwtconfig.issuer,
           signIn: new Date().getTime()
-        }, jwtconfig.secret, {expiresIn: jwtconfig.expire});
+        }, jwtconfig.admin-secret, {expiresIn: jwtconfig.expire});
 
         res.status(200).json({ success: true, data: obj, token: token })
       } else {
