@@ -7,7 +7,7 @@
 - sender api (Recommend postman)
 
 --------------- Installation ---------------
-1. git clone <<git-url>>
+1. git clone {{git-url}}
 2. npm install  or  yarn  (yarn is faster)
 3. npm start
 
@@ -19,5 +19,5 @@
 
 --------------- Seed Data -------------------
 1. sequelize db:seed:all
-2. for first admin using postman send api to 'GET: localhost:3000/api/send-activate/<<email-first-admin>>'
+2. for first admin using postman send api to 'GET: localhost:3000/api/send-activate/{{email-first-admin}}'
 3. activate account in sent email
