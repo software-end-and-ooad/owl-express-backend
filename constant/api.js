@@ -1,6 +1,6 @@
 const api = {
 
-  auth: '/auth',
+  auth: '/login',
   register: '/register',
   refresh: '/refresh',
   forgetPassword: '/forget-password',

@@ -1,8 +1,11 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import cors from 'cors'
+
+// Router
 import router from './route/route'
 import routerProtect from './route/router.protect'
-import cors from 'cors'
+import routerAdmin from './route/router.admin';
 
 const app = express();
 
@@ -43,7 +46,7 @@ app.use('/api/user', function(req, res, next) {
 })
 app.use('/api/user', routerProtect)
 
-//app.use('/api/admin', routerAdmin) // Use for admin
+app.use('/api/admin', routerAdmin) // Use for admin
 //app.use('/api/admin/protect', routerAdmin) // Use for admin using token (after logged in)
 
 app.get('/*', function (req, res) {
