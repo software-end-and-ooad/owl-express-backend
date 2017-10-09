@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize'
 import sequelize from './Model'
 
-const User = sequelize.define('users', {
+const Officer = sequelize.define('officers', {
   fullname: Sequelize.STRING,
   email: Sequelize.STRING,
   tell: Sequelize.STRING,
@@ -13,10 +13,11 @@ const User = sequelize.define('users', {
   officer_no: Sequelize.INTEGER,
   bank_account: Sequelize.STRING,
   profile_picture: Sequelize.STRING,
+  confirm_token: Sequelize.STRING,
   password: Sequelize.STRING,
 },{
   updatedAt: 'updated_at',
   createdAt: 'created_at',
 });
 
-module.exports = User;
+module.exports = Officer;

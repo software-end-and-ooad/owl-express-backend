@@ -1,6 +1,7 @@
 import User from '../../models/User'
 import EgmailConfig from '../../config/emailConfig';
 import nodemailer from 'nodemailer';
+import passwordHash from 'password-hash'
 
 
 const Handler = {
@@ -52,8 +53,12 @@ const Handler = {
         console.log('Message sent: %s', info.messageId);
       });
     });
-
   },
+
+  genPassword: (password) => {
+    const pwd = passwordHash.generate(password)
+    return pwd
+  }
 
 }
 
