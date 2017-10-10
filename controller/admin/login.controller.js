@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import passwordHash from 'password-hash'
 import Validator from 'validatorjs'
 
-import Officer from '../../models/officer' // Change to officer ( not create yet)
+import Officer from '../../models/officer'
 import jwtconfig from '../../config/jwtconfig'
 
 

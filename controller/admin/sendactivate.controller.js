@@ -1,4 +1,4 @@
-import Officer from '../../models/Officer';
+import Officer from '../../models/officer';
 
 import Handler from '../handlers/handlers';
 
