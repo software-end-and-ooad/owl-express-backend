@@ -47,11 +47,11 @@ async function LoginController(req, res) {
         const token = jwt.sign({
           sub: user.id,
           ema: user.email,
-          secret: jwtconfig.admin-secret,
+          secret: jwtconfig.adminSecret,
           audience: jwtconfig.audience,
           issuer: jwtconfig.issuer,
           signIn: new Date().getTime()
-        }, jwtconfig.admin-secret, {expiresIn: jwtconfig.expire});
+        }, jwtconfig.adminSecret, {expiresIn: jwtconfig.expire});
 
         res.status(200).json({ success: true, data: obj, token: token })
       } else {
