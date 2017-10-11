@@ -6,6 +6,7 @@ import cors from 'cors'
 import router from './route/route'
 import routerProtect from './route/router.protect'
 import routerAdmin from './route/router.admin';
+import routerAdminProtect from './route/router.admin.protect';
 
 const app = express();
 
@@ -47,7 +48,7 @@ app.use('/api/user', function(req, res, next) {
 app.use('/api/user', routerProtect)
 
 app.use('/api/admin', routerAdmin) // Use for admin
-//app.use('/api/admin/protect', routerAdmin) // Use for admin using token (after logged in)
+app.use('/api/admin/protect', routerAdminProtect) // Use for admin using token (after logged in)
 
 app.get('/*', function (req, res) {
   res.status(404).send('NOT FOUND')
