@@ -5,7 +5,7 @@ import Handler from '../handlers/handlers';
 
 async function SendActivateController(req, res) {
   const token = await Handler.confirmtokenGenerate()
-  const url = `http://localhost:4200/admin/activate/${token}`
+  const url = `http://localhost:4200/admin/reset-password/${token}`
   const email = req.params.email
   console.log(email);
 
