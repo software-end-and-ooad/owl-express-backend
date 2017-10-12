@@ -6,7 +6,8 @@ const api = {
   forgetPassword: '/forget-password',
   resetPassword: '/reset-password',
   sendActivate: '/send-activate/:email',
-  activate: '/activate/:tokenId'
+  activate: '/activate/:tokenId',
+  orderPackage: '/order',
 
 }
 
