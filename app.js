@@ -37,7 +37,7 @@ app.use('/api/user', function(req, res, next) {
   if ( authorization != undefined ) {
     const prefixToken = authorization.split(' ') // Get prefix token (should be bearer)
 
-    if ( prefixToken[0].toLowerCase() == bearer.toLowerCase() )
+    if ( prefixToken[0].toLowerCase() == bearer.toLowerCase() && prefixToken[1] != undefined) // bearer == bearer and token must be defined
       next();
     else
       res.status(400).json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
