@@ -1,10 +1,10 @@
 import Validator from 'validatorjs'
+import Order from '../models/Order';
 
 function OrderPackageController(req, res) {
   const {
     userId,
     size,
-    paymentStatus,
     paymentType,
     transportType,
     srcSubdistrict,
@@ -21,7 +21,6 @@ function OrderPackageController(req, res) {
   const data = {
     userId: userId,
     size: size,
-    paymentStatus: paymentStatus,
     paymentType: paymentType,
     transportType: transportType,
     srcSubdistrict: srcSubdistrict,
@@ -62,9 +61,27 @@ function OrderPackageController(req, res) {
 
   const validation = new Validator(data, rules, errMessage);
 
-  validation.passes(function() {
+  validation.passes(async function() {
 
-    res.status(200).json({ data: true })
+    const results = await Order.create({
+      user_id: userId,
+      size: size,
+      payment_type: paymentType,
+      transport_type: transportType,
+      src_subdistrict: srcSubdistrict,
+      src_district: srcDistrict,
+      src_province: srcProvince,
+      src_addressother: srcAddressOther,
+      dest_subdistrict: destSubdistrict,
+      dest_district: destDistrict,
+      dest_province: destProvince,
+      dest_address_other: destAddressOther,
+      pickup_date: pickupDate
+  })
+    const obj = data
+
+
+    res.status(200).json({ success: true, data: data })
   })
 
 
