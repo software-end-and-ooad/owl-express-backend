@@ -1,5 +1,6 @@
 import Validator from 'validatorjs'
 import Order from '../models/Order';
+import Handler from './handlers/handlers';
 
 function OrderPackageController(req, res) {
   const {
@@ -63,8 +64,11 @@ function OrderPackageController(req, res) {
 
   validation.passes(async function() {
 
+    const track = await Handler.genTrackNumber() // Generate track number
+
     const results = await Order.create({
       user_id: userId,
+      track: track,
       size: size,
       payment_type: paymentType,
       transport_type: transportType,
@@ -78,6 +82,7 @@ function OrderPackageController(req, res) {
       dest_address_other: destAddressOther,
       pickup_date: pickupDate
   })
+    data.track = track // Append track property into data
     const obj = data
 
 
