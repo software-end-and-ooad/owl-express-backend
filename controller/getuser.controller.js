@@ -18,7 +18,7 @@ function GetuserController(req, res) {
         where: {
           id: userid
         },
-        attributes: ['id', 'email', 'name', 'username', 'password']
+        attributes: ['id', 'email', 'fullname', 'tell', 'sub_district', 'district', 'province', 'address_other', 'subscribe_sms', 'subscribe_line', 'activated', 'password']
       })
 
       if (result != null) {
@@ -26,9 +26,16 @@ function GetuserController(req, res) {
 
         const obj = {
           id: user.id,
-          name: user.name,
-          username: user.username,
-          email: user.email
+          fullname: user.fullname,
+          tell: user.tell,
+          email: user.email,
+          sub_district: user.sub_district,
+          district: user.district,
+          province: user.province,
+          address_other: user.address_other,
+          subscribe_sms: user.subscribe_sms,
+          subscribe_line: user.subscribe_line,
+          activated: user.activated
         }
 
         res.status(200).json({ sucess: true, data: obj })
