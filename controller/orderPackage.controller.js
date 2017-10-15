@@ -75,7 +75,7 @@ function OrderPackageController(req, res) {
       src_subdistrict: srcSubdistrict,
       src_district: srcDistrict,
       src_province: srcProvince,
-      src_addressother: srcAddressOther,
+      src_address_other: srcAddressOther,
       dest_subdistrict: destSubdistrict,
       dest_district: destDistrict,
       dest_province: destProvince,
