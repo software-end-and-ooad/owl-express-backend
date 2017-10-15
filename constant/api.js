@@ -8,6 +8,9 @@ const api = {
   sendActivate: '/send-activate/:email',
   activate: '/activate/:tokenId',
   orderPackage: '/order',
+  province: '/province',
+  district: '/district/:provinceId',
+  subdistrict: '/subdistrict/:districtId',
 
 }
 
