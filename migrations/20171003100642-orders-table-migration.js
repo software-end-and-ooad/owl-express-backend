@@ -57,6 +57,10 @@ module.exports = {
           type: Sequelize.STRING,
           allownull: false
         },
+        src_address_other: {
+          type: Sequelize.STRING,
+          allownull: false
+        },
         dest_subdistrict: {
           type: Sequelize.STRING,
           allownull: false
