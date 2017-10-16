@@ -21,7 +21,8 @@ module.exports = {
         },
         size: {
           type: Sequelize.STRING,
-          allownull: true
+          allownull: true,
+          defaultValue: ''
         },
         price: {
           type: Sequelize.INTEGER,
