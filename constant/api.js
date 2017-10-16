@@ -11,7 +11,7 @@ const api = {
   province: '/province',
   district: '/district/:provinceId',
   subdistrict: '/subdistrict/:districtId',
-  getOrderList: 'order-list',
+  getOrderList: '/order-list',
 
 }
 
