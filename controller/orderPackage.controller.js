@@ -43,9 +43,11 @@ function OrderPackageController(req, res) {
         destDistrict: destDistrict,
         destProvince: destProvince,
         destAddressOther: destAddressOther,
-        pickupDate: pickupDate
+        pickupDate: pickupDate,
+        present: new Date() // Use for validate pickupDate (present Time)
       }
 
+      const test = new Date()
       const rules = {
         size: 'in:XL,L,M,S|string',
         paymentType: 'required|string|in:transfer,dest',
@@ -58,7 +60,7 @@ function OrderPackageController(req, res) {
         destDistrict: 'required|integer',
         destProvince: 'required|integer',
         destAddressOther: 'required|string',
-        pickupDate: 'required|date'
+        pickupDate: 'required|date|before_or_equal:present'
       };
 
       const errMessage = {
@@ -68,6 +70,7 @@ function OrderPackageController(req, res) {
         max: ':attribute_MUST_LESS_THAN_:max',
         string: ':attribute_MUST_BE_STRING',
         date: ':attribute_MUST_BE_DATE',
+        before_or_equal: ':attribute_MUST_BEFORE_OR_EQUAL_PRESENT',
       }
 
       const validation = new Validator(data, rules, errMessage);
