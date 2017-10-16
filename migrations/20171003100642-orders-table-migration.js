@@ -10,6 +10,10 @@ module.exports = {
           primaryKey: true,
           autoIncrement: true
         },
+        user_id: {
+          type: Sequelize.INTEGER,
+          allownull: false
+        },
         track: {
           type: Sequelize.STRING,
           allownull: true,

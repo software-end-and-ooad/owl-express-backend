@@ -2,6 +2,7 @@ import Sequelize from 'sequelize'
 import sequelize from './Model'
 
 const Order = sequelize.define('orders', {
+  user_id: Sequelize.INTEGER,
   track: Sequelize.STRING,
   size: Sequelize.STRING,
   price: Sequelize.INTEGER,
