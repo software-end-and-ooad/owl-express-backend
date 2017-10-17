@@ -48,6 +48,23 @@ app.use('/api/user', function(req, res, next) {
 app.use('/api/user', routerProtect)
 
 app.use('/api/admin', routerAdmin) // Use for admin
+
+app.use('/api/admin/protect', function(req, res, next) {
+  const authorization = req.headers['authorization'];
+  const bearer = 'bearer'
+
+  if ( authorization != undefined ) {
+    const prefixToken = authorization.split(' ') // Get prefix token (should be bearer)
+
+    if ( prefixToken[0].toLowerCase() == bearer.toLowerCase() && prefixToken[1] != undefined) // bearer == bearer and token must be defined
+      next();
+    else
+      res.status(400).json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
+  } else {
+    res.status(400).json({ success: false, data: 'TOKEN_NOT_PROVIDED' })
+  }
+})
+
 app.use('/api/admin/protect', routerAdminProtect) // Use for admin using token (after logged in)
 
 app.get('/*', function (req, res) {
