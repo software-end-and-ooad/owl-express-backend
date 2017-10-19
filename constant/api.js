@@ -13,6 +13,7 @@ const api = {
   subdistrict: '/subdistrict/:districtId',
   getOrderList: '/order-list',
   getAllUser: '/getalluser',
+  edituser: '/edituser/:userId',
 
 }
 
