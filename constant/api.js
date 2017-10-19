@@ -12,6 +12,7 @@ const api = {
   district: '/district/:provinceId',
   subdistrict: '/subdistrict/:districtId',
   getOrderList: '/order-list',
+  getAllUser: '/getalluser',
 
 }
 

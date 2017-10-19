@@ -97,6 +97,7 @@ function OrderPackageController(req, res) {
         })
         data.track = track // Append track property into data
         const obj = data
+        delete obj.present
 
 
         res.status(200).json({ success: true, data: data })

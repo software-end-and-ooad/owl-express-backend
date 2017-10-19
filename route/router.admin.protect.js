@@ -9,6 +9,7 @@ import Validatorjs from 'validatorjs'
 //import GetuserController from '../controller/getuser.controller' // Not doing yet
 import RefreshTokenController from '../controller/admin/refreshToken.controller'
 import GetadminController from '../controller/admin/getadmin.controller';
+import GetAllUserController from '../controller/admin/getalluser.controller.js';
 
 const routerAdminProtect = express.Router()
 
@@ -17,6 +18,8 @@ const routerAdminProtect = express.Router()
 routerAdminProtect.get(api.refresh, RefreshTokenController)
 
 routerAdminProtect.get(api.auth, GetadminController)
+
+routerAdminProtect.get(api.getAllUser, GetAllUserController)
 
 
 module.exports = routerAdminProtect;
