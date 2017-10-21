@@ -21,9 +21,11 @@ function GetAllUserController(req, res) {
         include: [{
           model: Province,
         }, {
-          model: District
+          model: District,
+          attributes: [ ['AMPHUR_ID', 'DISTRICT_ID'], ['AMPHUR_CODE', 'DISTRICT_CODE'], ['AMPHUR_NAME', 'DISTRICT_NAME'], 'GEO_ID', 'PROVINCE_ID']
         }, {
-          model: Subdistrict
+          model: Subdistrict,
+          attributes: [ ['DISTRICT_ID', 'SUBDISTRICT_ID'], ['DISTRICT_CODE', 'SUBDISTRICT_CODE'], ['DISTRICT_NAME', 'SUBDISTRICT_NAME'], ['AMPHUR_ID', 'DISTRICT_ID'], 'GEO_ID', 'PROVINCE_ID']
         }],
         attributes: ['id', 'email', 'fullname', 'tell', 'address_other', 'subscribe_sms', 'subscribe_line', 'activated']
       })
