@@ -27,7 +27,6 @@ function GetAllUserController(req, res) {
         }],
         attributes: ['id', 'email', 'fullname', 'tell', 'address_other', 'subscribe_sms', 'subscribe_line', 'activated']
       })
-      console.log(allUser);
 
       if (allUser != null) {
 
