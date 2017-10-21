@@ -1,6 +1,9 @@
 import jwt from 'jsonwebtoken'
 
 import User from '../../models/User'
+import Province from '../../models/Province'
+import District from '../../models/District'
+import Subdistrict from '../../models/Subdistrict'
 import jwtconfig from '../../config/jwtconfig'
 import handler from '../handlers/handlers';
 
@@ -14,13 +17,21 @@ function GetAllUserController(req, res) {
     if (!err) {
       const userid = decoded.sub
 
-      const result = await User.findAll({
-        attributes: ['id', 'email', 'fullname', 'tell', 'sub_district', 'district', 'province', 'address_other', 'subscribe_sms', 'subscribe_line', 'activated']
+      let allUser = await User.findAll({
+        include: [{
+          model: Province,
+        }, {
+          model: District
+        }, {
+          model: Subdistrict
+        }],
+        attributes: ['id', 'email', 'fullname', 'tell', 'address_other', 'subscribe_sms', 'subscribe_line', 'activated']
       })
+      console.log(allUser);
 
-      if (result != null) {
+      if (allUser != null) {
 
-        res.status(200).json({ sucess: true, data: result })
+        res.status(200).json({ sucess: true, data: allUser })
       } else {
 
         res.status(200).json({ sucess: true, data: {} })

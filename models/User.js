@@ -1,5 +1,8 @@
 import Sequelize from 'sequelize'
 import sequelize from './Model'
+import Province from './Province';
+import District from './District';
+import Subdistrict from './Subdistrict';
 
 const User = sequelize.define('users', {
   fullname: Sequelize.STRING,
@@ -29,5 +32,9 @@ const User = sequelize.define('users', {
   updatedAt: 'updated_at',
   createdAt: 'created_at',
 });
+
+User.hasMany(Province, {foreignKey: 'PROVINCE_ID', sourceKey: 'province'});
+User.hasMany(District, {foreignKey: 'AMPHUR_ID', sourceKey: 'district'});
+User.hasMany(Subdistrict, {foreignKey: 'DISTRICT_ID', sourceKey: 'sub_district'});
 
 module.exports = User;
