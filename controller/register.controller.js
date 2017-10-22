@@ -21,7 +21,7 @@ async function RegisterController(req, res) {
     fullname: 'required|max:40',
     email: 'required|max:255|email',
     tell: 'required|min:9|max:10', //unique
-    type: 'required',
+    type: 'required|in:personal,enterprise',
     password: 'required|min:6',
     repassword: 'required|same:password'
   };
@@ -31,7 +31,8 @@ async function RegisterController(req, res) {
     email: ':attribute_IS_NOT_EMAIL',
     same: ':attribute_IS_NOT_MATCH',
     min: ':attribute_MUST_MORE_:min',
-    max: ':attribute_MUST_LESS_:max'
+    max: ':attribute_MUST_LESS_:max',
+    in: ':attribute_IS_NOT_IN_SPECIFIC'
   }
 
   const validation = new Validator(req.body, rules, errMessage);
