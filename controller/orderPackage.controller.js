@@ -47,7 +47,6 @@ function OrderPackageController(req, res) {
         present: new Date() // Use for validate pickupDate (present Time)
       }
 
-      const test = new Date()
       const rules = {
         size: 'in:XL,L,M,S|string',
         paymentType: 'required|string|in:transfer,dest',
@@ -59,7 +58,7 @@ function OrderPackageController(req, res) {
         destSubdistrict: 'required|integer',
         destDistrict: 'required|integer',
         destProvince: 'required|integer',
-        destAddressOther: 'required|string',
+        destAddressOther: 'required|string|max:255',
         pickupDate: 'required|date|after:present'
       };
 
