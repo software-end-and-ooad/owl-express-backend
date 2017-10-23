@@ -54,6 +54,7 @@ function EditUserController(req, res) {
       const validation = new Validator(req.body, rules, errMessage);
 
       validation.passes(async function() {
+        console.log(sub_district);
 
         const userId = decoded.sub
 
@@ -61,11 +62,11 @@ function EditUserController(req, res) {
           fullname: fullname,
           tell: tell,
           type: type,
-          rejected_order: rejected_order,
-          sub_district: sub_district,
-          district: district,
-          province: province,
-          address_other: address_other,
+          rejected_order: rejected_order<0? 0: rejected_order > 3? 3: rejected_order,
+          sub_district: sub_district==undefined? null: sub_district==''? null: sub_district,
+          district: district==undefined? null: district==''? null: district,
+          province: province==undefined? null: province==''? null: province,
+          address_other: address_other==undefined? null: address_other==''? null: address_other,
           subscribe_sms: subscribe_sms,
           subscribe_line: subscribe_line,
           activated: 1,

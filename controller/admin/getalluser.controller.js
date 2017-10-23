@@ -27,7 +27,7 @@ function GetAllUserController(req, res) {
           model: Subdistrict,
           attributes: [ ['DISTRICT_ID', 'SUBDISTRICT_ID'], ['DISTRICT_CODE', 'SUBDISTRICT_CODE'], ['DISTRICT_NAME', 'SUBDISTRICT_NAME'], ['AMPHUR_ID', 'DISTRICT_ID'], 'GEO_ID', 'PROVINCE_ID']
         }],
-        attributes: ['id', 'email', 'fullname', 'tell', 'rejected_order', 'address_other', 'subscribe_sms', 'subscribe_line', 'activated']
+        attributes: ['id', 'email', 'fullname', 'tell', 'type', 'rejected_order', 'address_other', 'subscribe_sms', 'subscribe_line', 'activated']
       })
 
       if (allUser != null) {
