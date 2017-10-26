@@ -69,7 +69,7 @@ function EditUserController(req, res) {
           address_other: address_other==undefined? null: address_other==''? null: address_other,
           subscribe_sms: subscribe_sms,
           subscribe_line: subscribe_line,
-          activated: 1,
+          activated: activated,
         }, {
           where: {
             id: userId
