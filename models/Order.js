@@ -1,6 +1,10 @@
 import Sequelize from 'sequelize'
 import sequelize from './Model'
 
+import Province from './Province';
+import District from './District';
+import Subdistrict from './Subdistrict';
+
 const Order = sequelize.define('orders', {
   user_id: Sequelize.INTEGER,
   track: Sequelize.STRING,
@@ -25,5 +29,13 @@ const Order = sequelize.define('orders', {
   updatedAt: 'updated_at',
   createdAt: 'created_at',
 });
+
+Order.hasMany(Province, {as: 'src_provinces', foreignKey: 'PROVINCE_ID', sourceKey: 'src_province'})
+Order.hasMany(District, {as: 'src_districts', foreignKey: 'AMPHUR_ID', sourceKey: 'src_district'})
+Order.hasMany(Subdistrict, {as: 'src_subdistricts', foreignKey: 'DISTRICT_ID', sourceKey: 'src_subdistrict'})
+
+Order.hasMany(Province, {as: 'dest_provinces', foreignKey: 'PROVINCE_ID', sourceKey: 'dest_province'})
+Order.hasMany(District, {as: 'dest_districts', foreignKey: 'AMPHUR_ID', sourceKey: 'dest_district'})
+Order.hasMany(Subdistrict, {as: 'dest_subdistricts', foreignKey: 'DISTRICT_ID', sourceKey: 'dest_subdistrict'})
 
 module.exports = Order;

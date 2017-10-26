@@ -14,6 +14,7 @@ const api = {
   getOrderList: '/order-list',
   getAllUser: '/getalluser',
   edituser: '/edituser',
+  allOrder: '/allorder',
 
 }
 

@@ -15,4 +15,5 @@ const Province = sequelize.define('province', {
   createdAt: false,
 });
 
+
 module.exports = Province;

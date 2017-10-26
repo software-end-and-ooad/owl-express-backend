@@ -1,5 +1,7 @@
 import Sequelize from 'sequelize'
 import sequelize from './Model'
+
+import Order from './Order';
 import Province from './Province';
 import District from './District';
 import Subdistrict from './Subdistrict';
@@ -36,5 +38,7 @@ const User = sequelize.define('users', {
 User.hasMany(Province, {foreignKey: 'PROVINCE_ID', sourceKey: 'province'});
 User.hasMany(District, {foreignKey: 'AMPHUR_ID', sourceKey: 'district'});
 User.hasMany(Subdistrict, {foreignKey: 'DISTRICT_ID', sourceKey: 'sub_district'});
+
+User.hasMany(Order, {foreignKey: 'user_id', sourceKey: 'id'});
 
 module.exports = User;
