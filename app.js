@@ -28,8 +28,13 @@ app.use(function(req, res, next) {
     next();
 });
 
+// Route for general user not authenticate
 app.use('/api', router)
 
+
+
+
+// Route for user authenticated
 app.use('/api/user', function(req, res, next) {
   const authorization = req.headers['authorization'];
   const bearer = 'bearer'
@@ -47,8 +52,17 @@ app.use('/api/user', function(req, res, next) {
 })
 app.use('/api/user', routerProtect)
 
+
+
+
+
+// Route for admin not authenticate
 app.use('/api/admin', routerAdmin) // Use for admin
 
+
+
+
+// Route for admin authenticated
 app.use('/api/admin/protect', function(req, res, next) {
   const authorization = req.headers['authorization'];
   const bearer = 'bearer'
@@ -66,6 +80,10 @@ app.use('/api/admin/protect', function(req, res, next) {
 })
 
 app.use('/api/admin/protect', routerAdminProtect) // Use for admin using token (after logged in)
+
+
+
+
 
 app.get('/*', function (req, res) {
   res.status(404).send('NOT FOUND')
