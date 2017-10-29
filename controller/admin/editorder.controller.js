@@ -60,14 +60,14 @@ function EditOrderController(req, res) {
         tell: 'required|min:9|max:10', //unique
         transportType: 'required|string|in:EMS,sameday',
         postmanId: 'integer', //unique
-        srcSubdistrict: 'integer',
-        srcDistrict: 'integer',
-        srcProvince: 'integer',
-        srcAddressOther: 'max:255|string',
-        destSubdistrict: 'integer',
-        destDistrict: 'integer',
-        destProvince: 'integer',
-        destAddressOther: 'max:255|string',
+        srcSubdistrict: 'required|integer',
+        srcDistrict: 'required|integer',
+        srcProvince: 'required|integer',
+        srcAddressOther: 'required|max:255|string',
+        destSubdistrict: 'required|integer',
+        destDistrict: 'required|integer',
+        destProvince: 'required|integer',
+        destAddressOther: 'required|max:255|string',
       };
 
       const errMessage = {
@@ -88,7 +88,7 @@ function EditOrderController(req, res) {
         if (track != undefined) {
 
           const update = await Order.update({
-            price: price,
+            price: price<0? 0: price,
             size: size,
             pickupDate: pickupDate,
             status: status,

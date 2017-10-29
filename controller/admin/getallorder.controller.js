@@ -22,7 +22,7 @@ function GetAllOrderController(req, res) {
       let allOrder = await User.findAll({
         include: [{
           model: Order,
-          attributes: ['track', 'size', 'price', 'status', 'postman_id', 'transport_type', 'pickup_date'],
+          attributes: ['track', 'size', 'price', 'status', 'postman_id', 'transport_type', 'pickup_date', 'src_address_other', 'dest_address_other'],
           include: [
           {
             model: Province,

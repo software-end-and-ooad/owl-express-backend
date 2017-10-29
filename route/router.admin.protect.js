@@ -12,7 +12,7 @@ import GetadminController from '../controller/admin/getadmin.controller';
 import GetAllUserController from '../controller/admin/getalluser.controller.js';
 import EditUserController from '../controller/admin/edituser.controller.js';
 import GetAllOrderController from '../controller/admin/getallorder.controller';
-import EditOrderController from '../controller/admin/editrder.controller';
+import EditOrderController from '../controller/admin/editorder.controller';
 
 const routerAdminProtect = express.Router()
 
