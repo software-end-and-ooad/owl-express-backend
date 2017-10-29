@@ -54,7 +54,6 @@ function EditUserController(req, res) {
       const validation = new Validator(req.body, rules, errMessage);
 
       validation.passes(async function() {
-        console.log(sub_district);
 
         const userId = decoded.sub
 

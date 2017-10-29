@@ -12,6 +12,7 @@ import GetadminController from '../controller/admin/getadmin.controller';
 import GetAllUserController from '../controller/admin/getalluser.controller.js';
 import EditUserController from '../controller/admin/edituser.controller.js';
 import GetAllOrderController from '../controller/admin/getallorder.controller';
+import EditOrderController from '../controller/admin/editrder.controller';
 
 const routerAdminProtect = express.Router()
 
@@ -26,5 +27,7 @@ routerAdminProtect.get(api.getAllUser, GetAllUserController)
 routerAdminProtect.post(api.edituser, EditUserController)
 
 routerAdminProtect.get(api.allOrder, GetAllOrderController)
+
+routerAdminProtect.post(api.editOrder, EditOrderController)
 
 module.exports = routerAdminProtect;
