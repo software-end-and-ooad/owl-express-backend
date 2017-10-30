@@ -1,4 +1,5 @@
 import User from '../../models/User'
+import Officer from '../../models/officer'
 import Order from '../../models/Order';
 import EgmailConfig from '../../config/emailConfig';
 import nodemailer from 'nodemailer';
@@ -75,7 +76,29 @@ const Handler = {
     } while (uniqueTrack != null)
 
     return track;
-  }
+  },
+
+  genOfficerNumber: async() => // Handler for header 'Authorization' to get authen token
+  {
+    let token = ""
+    let possible = "1234567890"
+    let uniqueOfficerId = ""
+
+    do {
+      for (var i = 0; i < 4; i++) // length of token
+        token += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      // Check unique confirm_token
+      uniqueOfficerId = await Officer.findOne({
+        where: {
+          officer_no: token
+        },
+        attributes: ['id']
+      })
+    } while (uniqueOfficerId != null)
+
+    return token;
+  },
 
 }
 

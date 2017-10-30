@@ -13,7 +13,8 @@ async function ResetPasswordController(req, res) {
 
   const update = await Officer.update({
     password: passwordHash.generate(password),
-    confirm_token: await Handler.confirmtokenGenerate()
+    confirm_token: await Handler.confirmtokenGenerate(),
+    officer_no: await Handler.genOfficerNumber()
   },{
     where: {
       confirm_token: token
