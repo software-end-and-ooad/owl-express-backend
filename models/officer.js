@@ -25,8 +25,8 @@ const Officer = sequelize.define('officers', {
 });
 
 
-Officer.hasMany(Province, { foreignKey: 'PROVINCE_ID', sourceKey: 'src_province' })
-Officer.hasMany(District, { foreignKey: 'AMPHUR_ID', sourceKey: 'src_district' })
-Officer.hasMany(Subdistrict, { foreignKey: 'DISTRICT_ID', sourceKey: 'src_subdistrict' })
+Officer.hasMany(Province, { foreignKey: 'PROVINCE_ID', sourceKey: 'province' })
+Officer.hasMany(District, { foreignKey: 'AMPHUR_ID', sourceKey: 'district' })
+Officer.hasMany(Subdistrict, { foreignKey: 'DISTRICT_ID', sourceKey: 'sub_district' })
 
 module.exports = Officer;
