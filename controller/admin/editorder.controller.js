@@ -105,7 +105,6 @@ function EditOrderController(req, res) {
             dest_address_other: destAddressOther==undefined? null: destAddressOther==''? null: destAddressOther,
           }, {
             where: {
-              user_id: userId,
               track: track
             },
           })
