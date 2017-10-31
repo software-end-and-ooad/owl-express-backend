@@ -18,6 +18,7 @@ const api = {
   editOrder: '/editorder',
   getAllOfficer: '/getallofficer',
   editOfficer: '/editofficer',
+  addOfficer: '/addofficer',
 
 }
 
