@@ -59,7 +59,7 @@ function OrderPackageController(req, res) {
         destDistrict: 'required|integer',
         destProvince: 'required|integer',
         destAddressOther: 'required|string|max:255',
-        pickupDate: 'required|date|after:present'
+        pickupDate: 'date|after:present'
       };
 
       const errMessage = {
