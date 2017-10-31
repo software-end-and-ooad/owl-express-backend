@@ -14,6 +14,7 @@ function EditOfficerController(req, res) {
 
     if (!err) {
       const {
+        email,
         fullname,
         tell,
         role,
@@ -24,6 +25,7 @@ function EditOfficerController(req, res) {
       } = req.body
 
       const rules = {
+        email: 'required|max:255|email',
         fullname: 'required|max:40',
         tell: 'required|min:9|max:10', //unique
         role: 'required|in:admin,officer',
@@ -59,7 +61,7 @@ function EditOfficerController(req, res) {
           address_other: address_other==undefined? null: address_other==''? null: address_other,
         }, {
           where: {
-            id: userId
+            email: email,
           },
         })
 

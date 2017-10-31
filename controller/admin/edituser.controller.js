@@ -14,6 +14,7 @@ function EditUserController(req, res) {
 
     if (!err) {
       const {
+        email,
         fullname,
         tell,
         type,
@@ -28,6 +29,7 @@ function EditUserController(req, res) {
       } = req.body
 
       const rules = {
+        email: 'required|max:255|email',
         fullname: 'required|max:40',
         tell: 'required|min:9|max:10', //unique
         type: 'required|in:enterprise,personal',
@@ -71,7 +73,7 @@ function EditUserController(req, res) {
           activated: activated,
         }, {
           where: {
-            id: userId
+            email: email
           },
         })
 
