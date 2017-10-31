@@ -44,7 +44,6 @@ module.exports = {
         postman_id: {
           type: Sequelize.STRING,
           allownull: false,
-          unique: true
         },
         transport_type: {
           type: Sequelize.STRING,

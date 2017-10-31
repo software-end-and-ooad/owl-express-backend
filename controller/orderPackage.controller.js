@@ -78,7 +78,7 @@ function OrderPackageController(req, res) {
 
         const track = await Handler.genTrackNumber() // Generate track number
 
-        const results = await Order.create({
+        const data_db = {
           user_id: userId,
           track: track,
           size: size,
@@ -93,7 +93,11 @@ function OrderPackageController(req, res) {
           dest_province: destProvince,
           dest_address_other: destAddressOther,
           pickup_date: pickupDate
-        })
+        }
+        if (pickupDate==undefined || pickupDate==null || pickupDate=='')
+          delete data_db.pickup_date
+
+        const results = await Order.create(data_db)
         data.track = track // Append track property into data
         const obj = data
         delete obj.present

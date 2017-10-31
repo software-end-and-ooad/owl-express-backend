@@ -19,6 +19,7 @@ const api = {
   getAllOfficer: '/getallofficer',
   editOfficer: '/editofficer',
   addOfficer: '/addofficer',
+  acceptOrder: '/acceptorder',
 
 }
 
