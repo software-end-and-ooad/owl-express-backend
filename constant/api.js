@@ -20,6 +20,7 @@ const api = {
   editOfficer: '/editofficer',
   addOfficer: '/addofficer',
   acceptOrder: '/acceptorder',
+  removeOfficer: '/remove-officer',
 
 }
 

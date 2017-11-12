@@ -5,7 +5,7 @@ import Handler from '../handlers/handlers';
 
 
 
-async function ResetPasswordController(req, res) {
+async function ActivateAdminController(req, res) {
   const {
     password,
     token // Confirm_token
@@ -30,6 +30,4 @@ async function ResetPasswordController(req, res) {
 
 }
 
-module.exports = ResetPasswordController;
-
-
+module.exports = ActivateAdminController;
