@@ -20,7 +20,8 @@ const api = {
   editOfficer: '/editofficer',
   addOfficer: '/addofficer',
   acceptOrder: '/acceptorder',
-  checktrack: '/checktrack/:trackid',
+  removeOfficer: '/remove-officer/:email?',
+  checktrack: '/checktrack/:trackid'
 }
 
 
