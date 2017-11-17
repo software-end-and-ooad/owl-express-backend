@@ -14,6 +14,7 @@ import SendActivateController from '../controller/sendactivate.controller';
 import ProvinceController from '../controller/province.controller';
 import DistrictController from '../controller/district.controller';
 import SubDistrictController from '../controller/subDistrict.controller';
+import TrackController from '../controller/track.controller';
 
 const router = express.Router()
 
@@ -35,5 +36,7 @@ router.get(api.province, ProvinceController)
 router.get(api.district, DistrictController)
 
 router.get(api.subdistrict, SubDistrictController)
+
+router.get(api.checktrack, TrackController)
 
 module.exports = router;
