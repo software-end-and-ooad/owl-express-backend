@@ -94,7 +94,7 @@ function EditOrderController(req, res) {
             status: status,
             tell: tell,
             transportType: transportType,
-            postmanId: postmanId,
+            postman_id: postmanId==''? null: postmanId==undefined? null: postmanId,
             src_subdistrict: srcSubdistrict==undefined? null: srcSubdistrict==''? null: srcSubdistrict,
             src_district: srcDistrict==undefined? null: srcDistrict==''? null: srcDistrict,
             src_province: srcProvince==undefined? null: srcProvince==''? null: srcProvince,
