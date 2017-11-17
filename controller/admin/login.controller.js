@@ -32,7 +32,7 @@ async function LoginController(req, res) {
       where: {
         email: email
       },
-      attributes: ['id', 'email', 'password']
+      attributes: ['id', 'email', 'officer_no', 'password']
     })
 
     if (result != null) { // If found user
@@ -41,12 +41,13 @@ async function LoginController(req, res) {
       if (passwordHash.verify(password, user.password) == true) { // Check password
         const obj = { // Response object
           id: user.id,
+          officer_no: user.officer_no,
           email: user.email
         }
 
         const token = jwt.sign({
           sub: user.id,
-          ema: user.email,
+          pmi: user.officer_no,
           secret: jwtconfig.adminSecret,
           audience: jwtconfig.audience,
           issuer: jwtconfig.issuer,

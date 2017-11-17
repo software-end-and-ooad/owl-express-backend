@@ -12,9 +12,11 @@ function RefreshTokenController(req, res) {
   jwt.verify(token, jwtconfig.adminSecret, async function(err, decoded) {
     if (!err) {
       const userid = decoded.sub
+      const officer_no = decoded.pmi
       const timeNow = new Date().getTime()
       const jwtOptions = {
         sub: userid,
+        pmi: officer_no,
         secret: jwtconfig.adminSecret,
         audience: jwtconfig.audience,
         issuer: jwtconfig.issuer,

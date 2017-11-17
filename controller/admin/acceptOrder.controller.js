@@ -45,7 +45,8 @@ function AcceptOrderController(req, res) {
               postman_id: postman_id
             }, {
               where: {
-                track: track
+                track: track,
+                $or: [ {postman_id: null}, {postman_id: postman_id} ]
               }
             })
 
@@ -53,7 +54,7 @@ function AcceptOrderController(req, res) {
             if (update[0] > 0)  // If found id and updated
               res.status(200).json({ sucess: true })
             else
-              res.status(401).json({ sucess: false })
+              res.status(401).json({ sucess: false, data: 'CANNOT_ACCEPT_ORDER_ACCEPTED' })
           } else {
               res.status(401).json({ sucess: false })
           }

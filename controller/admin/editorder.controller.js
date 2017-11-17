@@ -84,39 +84,44 @@ function EditOrderController(req, res) {
 
       validation.passes(async function() {
 
-        const userId = decoded.sub
+        const officer_no = decoded.pmi // my postman_id
         if (track != undefined) {
+          if (officer_no != postmanId) { // protect update order that accepted by other postman
 
-          const update = await Order.update({
-            price: price<0? 0: price,
-            size: size,
-            pickupDate: pickupDate,
-            status: status,
-            tell: tell,
-            transportType: transportType,
-            postmanId: postmanId,
-            src_subdistrict: srcSubdistrict==undefined? null: srcSubdistrict==''? null: srcSubdistrict,
-            src_district: srcDistrict==undefined? null: srcDistrict==''? null: srcDistrict,
-            src_province: srcProvince==undefined? null: srcProvince==''? null: srcProvince,
-            src_address_other: srcAddressOther==undefined? null: srcAddressOther==''? null: srcAddressOther,
-            dest_subdistrict: destSubdistrict==undefined? null: destSubdistrict==''? null: destSubdistrict,
-            dest_district: destDistrict==undefined? null: destDistrict==''? null: destDistrict,
-            dest_province: destProvince==undefined? null: destProvince==''? null: destProvince,
-            dest_address_other: destAddressOther==undefined? null: destAddressOther==''? null: destAddressOther,
-          }, {
-            where: {
-              track: track
-            },
-          })
+            const update = await Order.update({
+              price: price<0? 0: price,
+              size: size,
+              pickupDate: pickupDate,
+              status: status,
+              tell: tell,
+              transportType: transportType,
+              postmanId: postmanId,
+              src_subdistrict: srcSubdistrict==undefined? null: srcSubdistrict==''? null: srcSubdistrict,
+              src_district: srcDistrict==undefined? null: srcDistrict==''? null: srcDistrict,
+              src_province: srcProvince==undefined? null: srcProvince==''? null: srcProvince,
+              src_address_other: srcAddressOther==undefined? null: srcAddressOther==''? null: srcAddressOther,
+              dest_subdistrict: destSubdistrict==undefined? null: destSubdistrict==''? null: destSubdistrict,
+              dest_district: destDistrict==undefined? null: destDistrict==''? null: destDistrict,
+              dest_province: destProvince==undefined? null: destProvince==''? null: destProvince,
+              dest_address_other: destAddressOther==undefined? null: destAddressOther==''? null: destAddressOther,
+            }, {
+              where: {
+                track: track
+              },
+            })
 
-          if (update[0] > 0) { // If found id and updated
+            if (update[0] > 0) { // If found id and updated
 
-            res.status(200).json({ sucess: true })
+              res.status(200).json({ sucess: true })
+            } else {
+
+              res.status(401).json({ sucess: false })
+            }
+
           } else {
 
-            res.status(401).json({ sucess: false })
+            res.status(400).json({ sucess: false, data: 'CANNOT_ACCEPT_ORDER_ACCEPTED' })
           }
-
         } else {
 
           res.status(400).json({ sucess: false, data: 'track_IS_REQUIRED' })
