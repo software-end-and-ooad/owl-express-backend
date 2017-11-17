@@ -1,3 +1,6 @@
+import jwt from 'jsonwebtoken'
+import Validator from 'validatorjs'
+
 import Order from '../../models/Order'
 import jwtconfig from '../../config/jwtconfig'
 import handler from '../handlers/handlers';
@@ -103,7 +106,7 @@ function EditOrderController(req, res) {
               dest_address_other: destAddressOther==undefined? null: destAddressOther==''? null: destAddressOther,
             }, {
               where: {
-                track: track
+                track: track,
               },
             })
 
