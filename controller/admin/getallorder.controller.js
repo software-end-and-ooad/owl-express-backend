@@ -24,7 +24,8 @@ function GetAllOrderController(req, res) {
         include: [{
           model: Order,
           where: isAdmin!='admin'? {
-            $or: [ {postman_id: null}, {postman_id: postman_id} ]
+            $or: [ {postman_id: null}, {postman_id: postman_id} ],
+            status: [1,2,3]
           }: false,
           attributes: ['track', 'size', 'price', 'status', 'postman_id', 'transport_type', 'pickup_date', 'src_address_other', 'dest_address_other'],
           include: [
