@@ -18,7 +18,7 @@ function GetOrderListController(req, res) {
         where: {
           user_id: userId
         },
-        attributes: [ 'track', 'size', 'price', 'payment_type', 'status', 'payment_status', 'transport_type', 'pickup_date']
+        attributes: [ 'track', 'size', 'price', 'status', 'payment_status', 'transport_type', 'pickup_date']
       })
 
       if (result != null) {

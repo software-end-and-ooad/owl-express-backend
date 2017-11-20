@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import Validator from 'validatorjs'
 
 import Order from '../../models/Order'
+import Officer from '../../models/officer';
 import jwtconfig from '../../config/jwtconfig'
 import handler from '../handlers/handlers';
 
@@ -86,7 +87,14 @@ function EditOrderController(req, res) {
 
         const officer_no = decoded.pmi // my postman_id
         if (track != undefined) {
-          if (officer_no != postmanId) { // protect update order that accepted by other postman
+          const findRole = await Officer.findOne({
+            where: {
+              officer_no: officer_no
+            },
+            attributes: ['role']
+          })
+          const role = findRole.dataValues.role
+          if ( (role == 'officer' && (officer_no == postmanId || postmanId == null || postmanId == '')) || (role == 'admin' && (officer_no != postmanId)) ) { // protect update order that accepted by other postman
 
             const update = await Order.update({
               price: price<0? 0: price,

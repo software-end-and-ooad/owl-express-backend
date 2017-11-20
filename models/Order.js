@@ -12,7 +12,6 @@ const Order = sequelize.define('orders', {
   price: Sequelize.INTEGER,
   payment_status: Sequelize.STRING,
   status: Sequelize.STRING,
-  payment_type: Sequelize.STRING,
   postman_id: Sequelize.STRING,
   transport_type: Sequelize.STRING,
   src_subdistrict: Sequelize.STRING,

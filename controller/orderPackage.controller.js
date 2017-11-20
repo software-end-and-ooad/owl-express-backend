@@ -17,7 +17,6 @@ function OrderPackageController(req, res) {
 
       const {
         size,
-        paymentType,
         transportType,
         srcSubdistrict,
         srcDistrict,
@@ -33,7 +32,6 @@ function OrderPackageController(req, res) {
       const data = {
         userId: userId,
         size: size,
-        paymentType: paymentType,
         transportType: transportType,
         srcSubdistrict: srcSubdistrict,
         srcDistrict: srcDistrict,
@@ -49,7 +47,6 @@ function OrderPackageController(req, res) {
 
       const rules = {
         size: 'in:XL,L,M,S|string',
-        paymentType: 'required|string|in:transfer,dest',
         transportType: 'required|string|in:EMS,sameday',
         srcSubdistrict: 'required|integer',
         srcDistrict: 'required|integer',
@@ -82,7 +79,6 @@ function OrderPackageController(req, res) {
           user_id: userId,
           track: track,
           size: size,
-          payment_type: paymentType,
           transport_type: transportType,
           src_subdistrict: srcSubdistrict,
           src_district: srcDistrict,

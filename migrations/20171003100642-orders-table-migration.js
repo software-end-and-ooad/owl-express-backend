@@ -37,10 +37,6 @@ module.exports = {
           type: Sequelize.STRING,
           allownull: false
         },
-        payment_type: {
-          type: Sequelize.STRING,
-          allownull: false
-        },
         postman_id: {
           type: Sequelize.STRING,
           allownull: false,
