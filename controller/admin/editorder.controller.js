@@ -57,7 +57,7 @@ function EditOrderController(req, res) {
         price: 'integer',
         size: 'string|in:XL,L,M,S',
         pickupDate: 'date|after:present',
-        status: 'integer|in:1,2,3,4',
+        status: 'integer|in:0,1,2,3,4,5',
         tell: 'required|min:9|max:10', //unique
         transportType: 'required|string|in:EMS,sameday',
         postmanId: 'integer', //unique
