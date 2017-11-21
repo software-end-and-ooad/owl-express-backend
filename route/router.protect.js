@@ -10,6 +10,7 @@ import OrderPackageController from '../controller/orderPackage.controller';
 import GetuserController from '../controller/getuser.controller'
 import RefreshTokenController from '../controller/refreshToken.controller'
 import GetOrderListController from '../controller/getOrderList.controller';
+import EditProfileController from '../controller/editprofile.controller';
 
 const routerProtect = express.Router()
 
@@ -20,6 +21,8 @@ routerProtect.get(api.refresh, RefreshTokenController)
 routerProtect.post(api.orderPackage, OrderPackageController)
 
 routerProtect.get(api.getOrderList, GetOrderListController)
+
+routerProtect.put(api.profilesetting, EditProfileController)
 
 
 module.exports = routerProtect;
